@@ -2,18 +2,21 @@
 	// 弹窗构造器
 	function Popup(){
 		this.config = {
+			skinClassName: null,
 			width: 300,
 			title: '系统消息',
 			content: '',
 			confirm: '确定',
 			handler4ConfirmButton: null,
 			handler4CloseButton: null,
-			hasCloseButton: false
+			hasCloseButton: false,
+			hasMask: true,
 		};
+		this.handlers = {};
 	}
 
 	// 弹窗的方法
-	Popup.prototype = {
+	Popup.prototype = extend(new Widget(), {
 		// 提示文字
 		alert: function(config){
 			var popupAlert = doc.getElementById('popup-alert');
@@ -24,9 +27,10 @@
 			var _config = extend(this.config, config),
 				winW = doc.documentElement.clientWidth,
 				winH = doc.documentElement.clientHeight,
+				_mask = null,
 				self = this,
 
-			// 创建DOM
+			// 创建弹窗DOM
 				_box = doc.createElement('div'), // 弹窗盒子
 				_title = doc.createElement('div'), // 弹窗标题
 				_content = doc.createElement('div'), // 弹窗内容
@@ -40,6 +44,11 @@
 			_title.className = 'popup-title';
 			_content.className = 'popup-content';
 			_confirm.className = 'popup-confirm';
+
+			// 如果有皮肤
+			if(_config.skinClassName){
+				_box.classList.add(_config.skinClassName);
+			}
 
 			// 设置内容
 			_title.innerHTML = _config.title;
@@ -59,9 +68,18 @@
 			_box.style.top = (winH - _box.clientHeight) / 2 + 'px';
 
 			// 绑定事件
+				if(_config.handler4ConfirmButton){
+					this.on('confirm', _config.handler4ConfirmButton);
+				}
+
+				if(_config.handler4CloseButton){
+					this.on('close', _config.handler4CloseButton);
+				}
+
 				// 点击确定，移除弹窗
 				_confirm.addEventListener('click', function(e){
-					self.config.handler4ConfirmButton && self.config.handler4ConfirmButton();
+					self.fire('confirm', 'haha');
+					_mask && doc.body.removeChild(_mask);
 					doc.body.removeChild(_box);
 				}, false);
 
@@ -119,15 +137,23 @@
 
 				// 绑定事件
 				closeButton.addEventListener('click', function(e){
-					_config.handler4CloseButton && _config.handler4CloseButton();
+					self.fire('close');
+					_mask && doc.body.removeChild(_mask);
 					doc.body.removeChild(_box);
 				}, false);
+			}
+
+			// 当存在模态窗时
+			if(_config.hasMask){
+				_mask = doc.createElement('div');
+				_mask.className = 'popup-mask';
+				doc.body.appendChild(_mask);
 			}
 			
 			// 将弹窗盒子添加到body中
 			doc.body.appendChild(_box);
-		}
-	};
+		},
+	});
 
 
 	win.Popup = Popup;
