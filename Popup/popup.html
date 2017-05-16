@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Popup</title>
+	<link rel="stylesheet" href="Popup.css">
+</head>
+<body>
+	<button id="showPopup">显示弹窗</button>
+</body>
+<script type="text/javascript" src="Popup.js"></script>
+<script type="text/javascript">
+	var popup = new Popup(), // 新建一个Popup实例对象
+		showPopup = document.getElementById('showPopup'); // 获取按钮的DOM对象
+
+	// 绑定点击方法
+	showPopup.onclick = function(e){
+		popup.alert({
+			width: 300,
+			content: '欢迎来到德莱联盟！',
+			handler4ConfirmButton: function(){
+				console.log('通过确定按钮关闭弹窗！');
+			},
+			hasCloseButton: true,
+			handler4CloseButton: function(){
+				console.log('通过关闭按钮关闭弹窗！');
+			},
+		});
+	};
+
+</script>
+</html>
