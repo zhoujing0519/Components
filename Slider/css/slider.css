@@ -1,0 +1,29 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #333;
+	overflow: hidden;
+}
+
+ul, li{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	height: 100%;
+}
+
+li{
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+
+img{
+	width: 100%;
+}
+
+#canvas{
+	overflow: hidden;
+}
+
