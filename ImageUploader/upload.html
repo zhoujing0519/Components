@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>上传照片</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/upload.css">
+</head>
+<body>
+	<div class="message-comment-wrapper" style="margin-bottom: 50px;">
+		<div>
+			<div class="story-title">
+				<label for="story-title">故事标题：</label>
+				<input type="text" id="story-title">
+			</div>
+			<textarea placeholder="写下你想分享的话..."></textarea>
+			<input type="submit" name="submit" value="发送">
+			<div id="uploadSwitch" class="btn-upload"></div>
+			<div class="thumbnail-container">
+				<p>图片（<span>0</span>/6）</p>
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+<script type="text/javascript" src="js/upload.use.js"></script>
+</html>

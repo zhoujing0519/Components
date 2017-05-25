@@ -1,0 +1,210 @@
+/*评论框*/
+.message-comment-wrapper{
+    width: 500px;
+    margin: 50px;
+    padding: 20px 20px 30px;
+    background-color: #eee;
+    border-radius: 5px;
+    position: relative;
+}
+.message-comment-wrapper .story-title{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #fff;
+}
+.message-comment-wrapper .story-title label{
+    font-size: 14px;
+    color: #333;
+}
+.message-comment-wrapper .story-title input{
+    font-size: 14px;
+    width: 60%;
+    background-color: transparent;
+}
+.message-comment-wrapper textarea{
+    width: 100%;
+    min-height: 50px;
+    resize: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 99;
+}
+.message-comment-wrapper input[type=submit]{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    height: 30px;
+    width: 107px;
+    border-radius: 5px;
+    background-color: #d7000f;
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.message-comment-wrapper .btn-upload{
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/icon-upload.png);
+    background-repeat: no-repeat;
+    background-size: 19px 17px;
+    background-position: center center;
+    cursor: pointer;
+    z-index: 100;
+}
+.message-comment-wrapper input[type=file]{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 96px;
+    height: 96px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.message-comment-wrapper .thumbnail-container{
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    padding: 20px 16px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    -ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 10000;
+}
+.message-comment-wrapper .thumbnail-container.open{
+    display: block;
+}
+.message-comment-wrapper .thumbnail-container::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 23px;
+    top: -12px;
+    width: 13px;
+    height: 13px;
+    background-image: url(../images/thumbnail-container-arrow.png);
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+}
+.message-comment-wrapper .thumbnail-container p{
+    font-size: 14px;
+    color: #727171;
+    margin-bottom: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.message-comment-wrapper .thumbnail-container ul{
+    max-width: 296px;
+}
+.message-comment-wrapper .thumbnail-container ul::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.message-comment-wrapper .thumbnail-container ul li{
+    float: left;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+.message-comment-wrapper .thumbnail-container ul li:nth-child(3n){
+    margin-right: 0px;
+}
+.message-comment-wrapper .thumbnail-container ul li a{
+    /*display: block;*/
+    width: 96px;
+    height: 96px;
+    background-color: #f3f4f8;
+    overflow: hidden;
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.message-comment-wrapper .thumbnail-container ul li.upload-default a{
+    background-image: url(../images/default-addImg.png);
+    background-size: 46px 56px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.message-comment-wrapper .thumbnail-container ul li a img{
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*height: 96px;*/
+    display: inline-block;
+    z-index: 1;
+}
+.message-comment-wrapper .thumbnail-container ul li a .mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 96px;
+    height: 96px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.message-comment-wrapper .thumbnail-container ul li:hover a .mask{
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.message-comment-wrapper .thumbnail-container ul li a .mask::after, .message-comment-wrapper .thumbnail-container ul li a .mask::before{
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    transition-delay: 0s;
+}
+.message-comment-wrapper .thumbnail-container ul li a .mask::after{
+    left: 46px;
+    top: 30px;
+    width: 4px;
+    height: 36px;
+}   
+.message-comment-wrapper .thumbnail-container ul li a .mask::before{
+    top: 46px;
+    right: 30px;
+    width: 36px;
+    height: 4px;
+}
+.message-comment-wrapper .thumbnail-container ul li:hover a .mask::after, .message-comment-wrapper .thumbnail-container ul li:hover a .mask::before{
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    opacity: 1;
+    -webkit-transition-delay: 0.4s;
+    -moz-transition-delay: 0.4s;
+    -ms-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
