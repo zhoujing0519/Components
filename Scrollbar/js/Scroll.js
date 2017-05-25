@@ -29,23 +29,22 @@ Scroll.prototype.mouseEvent = function(){
 		isScroll = this.isScroll;
 
 	// 当可滚动体发生滚动时
-	article.onscroll = function(e){
+	article.addEventListener('scroll', function(e){
 		e.stopPropagation();
 
 		// 滚动条内部控制器距离顶部的高度 = （ 正文滚动的高度 / 正文可滚动的范围 ）* 滚动条限制高度
 		controller.style.top = (article.scrollTop / article.scrollHeight) * scrollbar.clientHeight + "px";
+	}, false);
 
-	};
-
-	controller.onmousedown = function(e){
+	controller.addEventListener('mousedown', function(e){
 		e.preventDefault();
 		mousedown.y = e.pageY;
 		controllerOffsetTop = controller.offsetTop;
 
 		isScroll = true;
-	};
+	}, false);
 
-	document.onmousemove = function(e){
+	document.addEventListener('mousemove', function(e){
 		e.preventDefault();
 
 		if(isScroll){
@@ -67,15 +66,15 @@ Scroll.prototype.mouseEvent = function(){
 		}else{
 			isScroll = false;
 		}
-	};
+	}, false);
 
-	document.onmouseup = function(e){
+	document.addEventListener('mouseup', function(e){
 		isScroll = false;
-	};
+	}, false);
 
-	window.onresize = function(){
+	window.addEventListener('resize', function(){
 		self.recalc();
-	};
+	}, false);
 };
 
 // 重置
@@ -92,9 +91,3 @@ Scroll.prototype.setControllerOffsetTop = function(e){
 	// 滚动条内部控制器距离顶部的高度 = （ 正文滚动的高度 / 正文可滚动的范围 ）* 滚动条限制高度
 	this.controller.style.top = (this.article.scrollTop / this.article.scrollHeight) * this.scrollbar.clientHeight + "px";
 };
-
-new Scroll({
-	article: document.querySelector('.scrollbar-master'),
-	scrollbar: document.querySelector('.scrollbar-servant'),
-	controller: document.querySelector('.scrollbar-servant-tool'),
-});
